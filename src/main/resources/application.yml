@@ -1,0 +1,15 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+
+      info:
+        app:
+          description: 'API para sistema'
+          encoding: 'UTF-8'
+
+
+      server:
+        context-path: /sistema-api
