@@ -24,6 +24,7 @@
 		<hibernate.version> 5.6.10.Final</hibernate.version>
 		<exceptionutil>3.12.0</exceptionutil>
 		<javax.servlet>4.0.1</javax.servlet>
+		<commonsio>2.11.0</commonsio>
 	</properties>
 
 	<dependencies>
@@ -98,6 +99,13 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>${exceptionutil}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commonsio}</version>
+		</dependency>
+
 		<!--<dependency>-->
 			<!--<groupId>mysql</groupId>-->
 			<!--<artifactId>mysql-connector-java</artifactId>-->
