@@ -22,7 +22,7 @@ public class Log {
     private Long id;
 
     @NotNull
-    @Column(name = "conteudo")
+    @Column(name = "conteudo", length = 10000)
     private String conteudo;
 
     @NotNull

@@ -1,19 +1,15 @@
 package br.com.system.modulos.log;
 
 import lombok.extern.slf4j.Slf4j;
-import lombok.var;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.EntityNotFoundException;
-import javax.validation.Valid;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
 
 @Slf4j
 @RestController

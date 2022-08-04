@@ -29,7 +29,7 @@ public class LogController {
     @GetMapping(path = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<LogDTO> list() {
         var targetListType = new TypeToken<Collection<LogDTO>>(){}.getType();
-        return new ModelMapper().map(repository.findAll(), targetListType);
+        return new ModelMapper().map(repository.findAllByOrderByVezesDesc(), targetListType);
     }
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -29,27 +29,60 @@ public class LogService {
             in = file.getInputStream();
             if (in != null) {
 
-                /**faz uma busca no arquivo e reparte nas colunas na seguinte ordem:
-                 * 1 - Sigma, 2 - Arma */
+                /**faz uma leitura do inputStream e insere as linhas num array de string */
                 List<String> arquivo = IOUtils.readLines(in, "UTF-8");
-
                 List<Log> lista = new ArrayList<>();
 
-                arquivo.stream().forEach(t -> {final String[] partes = t.replaceAll(";", ",")
-                            .replaceAll("\"", "").split(",");
+                /**seta cada linha do arquivo nos campos de log e monta uma lista de LOG*/
+                arquivo.stream().forEach(t -> {
+                    String linha = t;
+                    /*retira data e hora do inicio*/
+                    int de = t.indexOf("|");
+                    int ate = 31;
+                    if(de != -1) {
+                        String remove = t.substring(de, ate);
+                        linha = t.replace(remove, "");
+                    }
+                    /**/
+                    /*seta na lista de log*/
                     Log logLista = new Log();
-                    logLista.setConteudo(partes[0].toUpperCase().concat("").concat(partes[3]).concat("")
-                            .concat(partes[4]));
+                    logLista.setConteudo(linha);
+                    logLista.setVezes(1L);
+                    /**/
+
+                    /*verificar item repetido*/
+                    if(lista.contains(logLista)) {
+                        int indice = lista.indexOf(logLista);
+                        lista.remove(indice);
+                        logLista.setVezes(logLista.getVezes() + 1);
+                    }
+                    /**/
 
                     lista.add(logLista);
+
                 });
-                System.out.println(lista);
+
+                salvarListaDeArquivo(lista);
 
             }
 
         } catch (MyRunTimeException e) {
             throw new MyRunTimeException("Ops! Ocorreu o seguinte erro ao processar o arquivo: "
                     + e.getMessage());
+        }
+
+    }
+
+    public void salvarListaDeArquivo(List<Log> lista){
+        try{
+
+            for (Log log: lista)
+                repository.save(log);
+
+        }catch (MyRunTimeException e){
+            throw new MyRunTimeException("Ops! Ocorreu o seguinte erro ao salvar o arquivo: "
+                    + e.getMessage());
+
         }
 
     }
